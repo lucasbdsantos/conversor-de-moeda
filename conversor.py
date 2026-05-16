@@ -1,4 +1,6 @@
 import requests
+from rich import print
+
 
 def buscar_taxas():
         # Fazemos a requisição dentro da função para garantir que os dados em estejam em tempo real
@@ -36,7 +38,7 @@ def main():
             => """))
         
         except ValueError:
-            print("Você não digitou um número.")
+            print("[bold red]Você não digitou um número.[/]")
             continue   
         
         # Para encerrar o código
@@ -46,29 +48,29 @@ def main():
         
         # Caso a pessoa digite um número que não está no comando
         if menu not in [1, 2, 3]:
-            print("Comando não reconhecido.")
+            print("[bold red]Comando não reconhecido.[/]")
             continue
 
         # Quantia em real
         try:
-            real = float(input("Digite a quantia em R$ ")) 
+            real = float(input("Digite a quantia em R$: ")) 
         except ValueError:
-           print("Você não digitou um número.")
+           print("[bold red]Você não digitou um número[/].")
            continue
            
         if menu == 1:
             conversao = real / taxa_dolar
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"R${real:.2f} valem US${conversao:.2f} (Cotação: {taxa_dolar})")
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold green]US$ {conversao:.2f}[/] (Cotação do dólar: R$ {taxa_dolar})")
 
         elif menu == 2:
             conversao = real / taxa_euro
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"R${real:.2f} valem €{conversao:.2f} (Cotação: {taxa_euro})")
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold blue]€ {conversao:.2f}[/] (Cotaçãodo do euro: R$ {taxa_euro})")
 
         elif menu == 3:
             conversao = real / taxa_libra
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"R${real:.2f} valem £{conversao:.2f} (Cotação: {taxa_libra})")
-                 
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold cyan]£ {conversao:.2f}[/] (Cotaçãodo da libra: R$ {taxa_libra})")
+
 main()
