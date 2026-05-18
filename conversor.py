@@ -52,11 +52,12 @@ def main():
             continue
 
         # Quantia em real
-        try:
-            real = float(input("Digite a quantia em R$: ")) 
-        except ValueError:
-           print("[bold red]Você não digitou um número[/].")
-           continue
+        while True:
+            try:
+                real = float(input("Digite a quantia em R$: "))
+                break  # sai do loop se der certo
+            except ValueError:
+                print("[bold red]Você não digitou um número[/].")
            
         if menu == 1:
             conversao = real / taxa_dolar
