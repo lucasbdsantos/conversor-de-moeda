@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime 
 from rich import print
 
 
@@ -22,6 +23,9 @@ def buscar_taxas():
 
 def main():
     taxa_dolar, taxa_euro, taxa_libra = buscar_taxas()
+    data = datetime.now()
+    formato_br = data.strftime("%d/%m/%Y %H:%M")
+
 
     while True:
         # Caso a pessoa não digite um número
@@ -62,16 +66,16 @@ def main():
         if menu == 1:
             conversao = real / taxa_dolar
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold green]US$ {conversao:.2f}[/] (Cotação do dólar: R$ {taxa_dolar})")
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold green]US$ {conversao:.2f}[/] (Cotação do dólar em {formato_br}: R$ {taxa_dolar})")
 
         elif menu == 2:
             conversao = real / taxa_euro
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold blue]€ {conversao:.2f}[/] (Cotaçãodo do euro: R$ {taxa_euro})")
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold blue]€ {conversao:.2f}[/] (Cotação do euro em {formato_br}: R$ {taxa_euro})")
 
         elif menu == 3:
             conversao = real / taxa_libra
             # .2f serve para mostrar apenas duas casas decimais
-            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold cyan]£ {conversao:.2f}[/] (Cotaçãodo da libra: R$ {taxa_libra})")
+            print(f"[bold yellow]R$ {real:.2f}[/] valem [bold cyan]£ {conversao:.2f}[/] (Cotação da libra em {formato_br}: R$ {taxa_libra})")
 
 main()
